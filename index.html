@@ -5,21 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plan To Go</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <!-- Navbar -->
   <header>
     <nav>
-      <div class="logo">Plantogo
-        <img src="img/logo.png" alt="Plantogo Logo" style="height: 35px; width: auto;"> <!-- Logo Image -->
+      <div class="logo">
+        <span>Plantogo</span>
+        <img src="img/logo.png" alt="Plantogo Logo" style="height: 35px; width: auto;">
       </div>
-      <div class="nav-toggle">&#9776;</div> <!-- Hamburger Menu Icon -->
+      <div class="nav-toggle">&#9776;</div>
       <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Tours</a></li>
-        <li><a href="#">Destinations</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#tours">Tours</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
         <li><a href="login.html" class="login">Log in</a></li>
         <li><a href="sign_up.html" class="signup">Sign up</a></li>
       </ul>
@@ -27,7 +29,7 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero"  id="home">
     <div class="hero-content">
       <h1>Plan To Go</h1>
       <p>Plan Every Trip Perfectly – Easy, Convenient, and All in One Place!</p>
@@ -68,7 +70,20 @@
       </div>
     </div>
   </section>
+  <!-- FOOTER DESIGN-->
+  <footer class="footer">
+    <div class="footer-iconTop">
+      <a href="#home" title="Scroll to Home">
+        <i class="fas fa-arrow-up"></i>
+      </a>
+    </div>
+  </footer>
+
 
   <script src="script.js"></script>
+  <!-- SCROLL REVEAL JS -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <!-- TYPEJS -->
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 </body>
 </html>

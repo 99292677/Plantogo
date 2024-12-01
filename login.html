@@ -3,42 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - Plan To Go</title>
+  <meta name="description" content="Login to Plantogo and plan your trips with ease.">
+  <title>Plan To Go - Login</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
-<header>
+  <!-- Header Section -->
+  <header >
     <nav>
-      <div class="logo">Plantogo
-        <img src="img/logo.png" alt="Plantogo Logo" style="height: 35px; width: auto;"> <!-- Logo Image -->
+      <div class="logo">
+        <span>Plantogo</span>
+        <img src="img/logo.png" alt="Plantogo Logo" style="height: 35px; width: auto;">
       </div>
-      <div class="nav-toggle">&#9776;</div> <!-- Hamburger Menu Icon -->
       <ul class="nav-links">
-        <li><a href="index.html" class="return"> < Retren</a></li>
+        <li><a href="sign_up.html" class="signup">Sign up</a></li>
       </ul>
     </nav>
   </header>
-<body>
-  <div class="login-container">
-    <div class="login-form">
-      <h1>Login to Plan To Go</h1>
-      <form action="dashboard.html" method="POST">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="Enter your email" required>
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="Enter your password" required>
-        </div>
-        <button type="submit" class="login-button">Login</button>
-      </form>
-      <div class="extra-links">
-        <a href="signup.html">Don't have an account? Sign up</a>
-        <a href="forgot-password.html">Forgot Password?</a>
+
+  <!-- Login Section -->
+  <div  class="login-container" id="loginx">
+    <h1>Login to Plantogo</h1>
+    <form action="dashboard.html" method="POST">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required>
       </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      </div>
+      <button type="submit">Log In</button>
+    </form>
+    <div class="register">
+      <p>Don't have an account? <a href="sign_up.html">Sign up</a></p>
     </div>
   </div>
 
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="footer-iconTop">
+      <a href="#login" title="Scroll to Home">
+        <i class="fas fa-arrow-up"></i> <!-- Home icon -->
+      </a>
+    </div>
+  </footer>
+
   <script src="script.js"></script>
+  <!-- SCROLL REVEAL JS -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <!-- TYPEJS -->
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 </body>
 </html>

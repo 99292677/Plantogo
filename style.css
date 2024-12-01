@@ -4,6 +4,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -347,4 +350,335 @@ header.sticky {
   color: #007BFF;
   font-weight: bold;
   border-bottom: 2px solid #007BFF;
+}
+
+
+/* Login Container */
+.login-container {
+  background-color: white;
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: auto;
+  margin-top: 80px;
+  margin-bottom: 80px;
+
+}
+
+.login-container h1 {
+  color: #007BFF;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.login-container .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.login-container label {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.login-container input[type="text"]:focus,
+.login-container input[type="password"]:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s;
+}
+
+.login-container button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.login-container .forgot-password {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.login-container .forgot-password a {
+  color: #007BFF;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login-container .forgot-password a:hover {
+  color: #0056b3;
+}
+
+.login-container .register {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.login-container .register a {
+  color: #28a745;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.login-container .register a:hover {
+  color: #1e7e34;
+}
+
+
+.nav-links .return {
+  padding: 0.5rem 1rem;
+  background-color: #1b11b3;
+  color: rgb(255, 255, 255);
+  border-radius: 20px;
+  transition: all 0.3s ease, transform 0.3s;
+}
+
+.nav-links .return:hover {
+  background-color: #6a93c0;
+  color: #ffffff;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);
+}
+
+.form-section {
+  background-color: white;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.form-section h1 {
+  margin-bottom: 1.5rem;
+  color: #007BFF;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  flex: 1;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="date"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input[type="date"]:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+button[type="submit"] {
+  padding: 0.8rem 2rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Table Section */
+.table-section {
+  background-color: white;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.table-section h2 {
+  margin-bottom: 1.5rem;
+  color: #007BFF;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  text-align: center;
+}
+
+table th {
+  background-color: #007BFF;
+  color: white;
+}
+
+table td input {
+  width: 90%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+table td input:focus {
+  border-color: #007BFF;
+}
+
+.button-group button {
+  padding: 0.8rem 1.5rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s;
+}
+
+.button-group button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+#delete-last-row-btn {
+  background-color: #dc3545;
+}
+
+#delete-last-row-btn:hover {
+  background-color: #c82333;
+}
+
+
+/* Sign Up Container */
+.sign-up-container {
+  background-color: white;
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: auto;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.sign-up-container h1 {
+  color: #007BFF;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.sign-up-container .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.sign-up-container label {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.sign-up-container input[type="text"],
+.sign-up-container input[type="email"],
+.sign-up-container input[type="password"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.sign-up-container input[type="text"]:focus,
+.sign-up-container input[type="email"]:focus,
+.sign-up-container input[type="password"]:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+.sign-up-container button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s;
+}
+
+.sign-up-container button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.sign-up-container .login-link {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.sign-up-container .login-link a {
+  color: #28a745;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.sign-up-container .login-link a:hover {
+  color: #1e7e34;
 }

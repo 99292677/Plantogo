@@ -3,18 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>เพิ่ม/แก้ไขกิจกรรม</title>
+  <title>Plant To Go</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>เพิ่มหรือแก้ไขกิจกรรม</h1>
-  <form id="activityForm">
-    <label for="date">วันที่:</label>
-    <input type="date" id="date" name="date" required>
-    <label for="activity">กิจกรรม:</label>
-    <input type="text" id="activity" name="activity" required>
-    <button type="submit">บันทึก</button>
-  </form>
+  <header>
+    <nav>
+      
+      <div class="logo">Plantogo
+        <img src="img/logo.png" alt="Plantogo Logo" style="height: 35px; width: auto;"> <!-- Logo Image -->
+      </div>
+      <div class="nav-toggle">&#9776;</div> <!-- Hamburger Menu Icon -->
+      <ul class="nav-links">
+        <li><a href="index.html" class="return"> < Retren</a></li>
+      </ul>
+    </nav>
+  </header>
+ 
+  <main>
+    <!-- Form Section -->
+    <section class="form-section">
+      <h1>Select Date</h1>
+      <form id="activityForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="start-date">Start Date:</label>
+            <input type="date" id="start-date" name="start-date" required>
+          </div>
+          <div class="form-group">
+            <label for="end-date">End Date:</label>
+            <input type="date" id="end-date" name="end-date" required>
+          </div>
+        </div>
+        <button type="submit">บันทึก</button>
+      </form>
+    </section>
+ 
+ 
+ 
+    <!-- Table Section -->
+    <section class="table-section">
+      <h2>เพิ่มข้อมูลในตาราง</h2>
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+            <th>Column 4</th>
+            <th>Column 5</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="Enter Data 1"></td>
+            <td><input type="text" placeholder="Enter Data 2"></td>
+            <td><input type="text" placeholder="Enter Data 3"></td>
+            <td><input type="text" placeholder="Enter Data 4"></td>
+            <td><input type="text" placeholder="Select File +"></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- ปุ่มเพิ่มและลบแถว -->
+      <div class="button-group">
+        <button id="add-row-btn">เพิ่มแถว</button>
+        <button id="delete-last-row-btn">ลบแถวล่าสุด</button>
+      </div>
+    </section>
+  </main>
+ 
   <script src="script.js"></script>
 </body>
 </html>

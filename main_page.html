@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plan To Go</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav>
+      <div class="logo">
+        <span>Plantogo</span>
+        <img src="img/logo.png" alt="Plantogo Logo" style="height: 35px; width: auto;">
+      </div>
+      <div class="nav-toggle" aria-label="Toggle navigation menu">&#9776;</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="index.html" class="signup">Log out</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Plan To Go</h1>
+      <p>Plan Every Trip Perfectly – Easy, Convenient, and All in One Place!</p>
+      <div class="search-container">
+        <div class="search-box">
+          <input type="text" placeholder="Location: Where are you going?">
+        </div>
+        <div class="search-box">
+          <input type="date">
+        </div>
+      </div>
+      <div class="search2-box">
+        <button class="search-button">Search</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Planning Section -->
+  <section class="planning">
+    <h2>Schedule your planning</h2>
+    <p>Function to create and plan your trip</p>
+    <div class="cards">
+      <div class="card">
+        <img src="img/image.png" alt="Example Plan">
+        <h3>EXAMPLE PLAN</h3>
+        <button>CLICK TO VIEW</button>
+      </div>
+      <div class="card">
+        <img src="img/image.png" alt="Japanese Plan">
+        <h3>JAPANESE PLAN</h3>
+        <p>13/10/2024 - 20/10/2024</p>
+        <button>CLICK TO VIEW</button>
+      </div>
+      <div class="card">
+        <img src="img/image.png" alt="Create a New Plan">
+        <h3>CREATE A NEW PLAN</h3>
+        <a href="form.html" class="create-button">CREATE</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="footer-iconTop">
+      <a href="#home" title="Scroll to Home">
+        <i class="fas fa-arrow-up"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <!-- Scroll Reveal JS -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <!-- Typed.js -->
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+</body>
+</html>

@@ -17,11 +17,6 @@
       </div>
       <div class="nav-toggle" aria-label="Toggle navigation menu">&#9776;</div>
       <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#tours">Tours</a></li>
-        <li><a href="#destinations">Destinations</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#contact">Contact</a></li>
         <li><a href="login.html" class="login">Log in</a></li>
         <li><a href="sign_up.html" class="signup">Sign up</a></li>
       </ul>
@@ -33,40 +28,56 @@
     <div class="hero-content">
       <h1>Plan To Go</h1>
       <p>Plan Every Trip Perfectly – Easy, Convenient, and All in One Place!</p>
-      <div class="search-container">
-        <div class="search-box">
-          <input type="text" placeholder="Location: Where are you going?">
-        </div>
-        <div class="search-box">
-          <input type="date">
-        </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services-container">
+      <div class="service-card">
+        <i class="fas fa-map-marked-alt"></i>
+        <h3>Custom Trip Planning</h3>
+        <p>Create personalized travel itineraries tailored to your interests and budget.</p>
       </div>
-      <div class="search2-box">
-        <button class="search-button">Search</button>
+      <div class="service-card">
+        <i class="fas fa-wallet"></i>
+        <h3>Budget Management</h3>
+        <p>Track expenses and manage your trip's budget with ease.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-users"></i>
+        <h3>Group Travel</h3>
+        <p>Plan trips with friends or family and stay organized together.</p>
       </div>
     </div>
   </section>
 
-  <!-- Planning Section -->
-  <section class="planning">
-    <h2>Schedule your planning</h2>
-    <p>Function to create and plan your trip</p>
-    <div class="cards">
-      <div class="card">
-        <img src="img/image.png" alt="Example Plan">
-        <h3>EXAMPLE PLAN</h3>
-        <button>CLICK TO VIEW</button>
-      </div>
-      <div class="card">
-        <img src="img/image.png" alt="Japanese Plan">
-        <h3>JAPANESE PLAN</h3>
-        <p>13/10/2024 - 20/10/2024</p>
-        <button>CLICK TO VIEW</button>
-      </div>
-      <div class="card">
-        <img src="img/image.png" alt="Create a New Plan">
-        <h3>CREATE A NEW PLAN</h3>
-        <a href="form.html" class="create-button">CREATE</a>
+  <!-- About Us Section -->
+  <section class="about" id="about">
+    <h2 class="section-title">About Us</h2>
+    <div class="about-content">
+      <p>
+        Plan To Go was created with the mission to make travel planning effortless, enjoyable, and stress-free. Our platform is designed for travelers of all kinds, providing tools to customize, budget, and share your travel plans. Whether it's a solo adventure, a romantic getaway, or a family vacation, we're here to help you make it perfect!
+      </p>
+      <img src="img/logo.png" alt="About Us" class="about-img">
+    </div>
+  </section>
+
+  <!-- Contact Us Section -->
+  <section class="contact" id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-content">
+      <form action="submit_form.php" method="post" class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+      <div class="contact-info">
+        <h3>Get in Touch</h3>
+        <p><i class="fas fa-envelope"></i> support@plantogo.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Bangkok University, Pathumthani</p>
       </div>
     </div>
   </section>
@@ -81,9 +92,7 @@
   </footer>
 
   <script src="script.js"></script>
-  <!-- Scroll Reveal JS -->
   <script src="https://unpkg.com/scrollreveal"></script>
-  <!-- Typed.js -->
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 </body>
 </html>

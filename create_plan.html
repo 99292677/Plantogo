@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Your Trip</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f9f9;
+  color: #2c3e50;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header Section */
+.hero-section {
+  background: linear-gradient(120deg, #a1c4fd, #1b11b3);
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+  border-radius: 0 0 15px 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Top Section */
+.header-top {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 20px;
+}
+
+.back-button {
+  background-color: #ffffff;
+  color: #1b11b3;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border: 2px solid #1b11b3;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #1b11b3;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+/* Trip Section */
+.trip-section {
+  margin: 40px 20px;
+}
+
+.trip-container {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.trip-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.trip-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.input-wrapper {
+  flex: 1 1 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper label {
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+input[type="text"], input[type="date"] {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+input:focus {
+  border-color: #1b11b3;
+  outline: none;
+  box-shadow: 0 0 5px rgba(27, 17, 179, 0.3);
+}
+
+.add-image {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.add-image button {
+  padding: 10px 15px;
+  background: #1b11b3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-image button:hover {
+  background: #6a93c0;
+}
+
+/* Day Section */
+.day-section {
+  margin: 40px 20px;
+}
+
+.day-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.day-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.day-details .full-width {
+  flex: 1 1 100%;
+}
+
+.add-more {
+  padding: 10px 20px;
+  background: #1b11b3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.add-more:hover {
+  background: #6a93c0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .trip-details, .day-details {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .input-wrapper {
+    flex: 1 1 100%;
+  }
+
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-section p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .hero-section p {
+    font-size: 0.9rem;
+  }
+
+  .add-more {
+    font-size: 1rem;
+  }
+}
+  </style>
+</head>
+<body>
+    <header class="hero-section">
+        <div class="header-top">
+          <a href="main_page.html" class="back-button">← Back</a>
+        </div>
+        <div class="hero-content">
+          <h1>CREATE YOUR TRIP</h1>
+          <p>Plan Every Trip Perfectly – Easy, Convenient, and All in One Place!</p>
+        </div>
+      </header>
+  
+  <main>
+    <section class="trip-section">
+      <div class="trip-container">
+        <h2>Trip Details</h2>
+        <div class="trip-details">
+          <div class="input-wrapper">
+            <label for="trip-name">Trip Name</label>
+            <input id="trip-name" type="text" placeholder="Input your trip name">
+          </div>
+          <div class="input-wrapper">
+            <label for="trip-image">Add Image</label>
+            <div class="add-image">
+              <input id="trip-image" type="text" placeholder="Add the image trip here">
+              <button>+</button>
+            </div>
+          </div>
+          <div class="date-wrapper">
+            <div class="input-wrapper">
+              <label for="start-date">Start Date</label>
+              <input id="start-date" type="date">
+            </div>
+            <div class="input-wrapper">
+              <label for="end-date">Stop Date</label>
+              <input id="end-date" type="date">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="day-section">
+      <h2>DAY ONE</h2>
+      <div class="day-details">
+        <div class="input-wrapper">
+          <label for="location">The Location</label>
+          <input id="location" type="text" placeholder="Input the location">
+        </div>
+        <div class="input-wrapper">
+          <label for="image-add">Add Image</label>
+          <div class="add-image">
+            <input id="image-add" type="text" placeholder="Input to add the image trip here">
+            <button>+</button>
+          </div>
+        </div>
+        <div class="input-wrapper">
+          <label for="time">Time</label>
+          <input id="time" type="text" placeholder="Input the time">
+        </div>
+        <div class="input-wrapper">
+          <label for="budget">Budget</label>
+          <input id="budget" type="text" placeholder="Input the budget">
+        </div>
+        <div class="input-wrapper full-width">
+          <label for="detail">Detail</label>
+          <input id="detail" type="text" placeholder="Input the detail">
+        </div>
+      </div>
+      <button class="add-more">ADD MORE +</button>
+    </section>
+  </main>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+</body>
+</html>

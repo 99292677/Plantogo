@@ -6,6 +6,210 @@
   <title>Plan To Go</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+    import { getFirestore, collection, query, where, getDocs, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+
+    const firebaseConfig = {
+    apiKey: "AIzaSyCgtHq12Z7Ow1MHOs3KOleiIgW0kOGgjCg",
+    authDomain: "plantogo-79e1f.firebaseapp.com",
+    projectId: "plantogo-79e1f",
+    storageBucket: "plantogo-79e1f.firebasestorage.app",
+    messagingSenderId: "581749759098",
+    appId: "1:581749759098:web:9291dd56f6f7db0e7a2fc3",
+    measurementId: "G-10X7R19GY1"
+ };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    // Fetch trips for the logged-in user
+    async function fetchUserTrips(userId) {
+      const tripsContainer = document.querySelector(".cards");
+      tripsContainer.innerHTML = ""; // Clear existing cards
+
+      try {
+        const tripsQuery = query(collection(db, "trips"), where("userId", "==", userId));
+        const querySnapshot = await getDocs(tripsQuery);
+
+        if (querySnapshot.empty) {
+          tripsContainer.innerHTML = "<p>No trips found. Create your first trip now!</p>";
+          return;
+        }
+
+        querySnapshot.forEach((doc) => {
+          const trip = doc.data();
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <h3>${trip.tripName}</h3>
+            <p>${trip.startDate} - ${trip.endDate}</p>
+            <div class="card-actions">
+              <button class="view-btn" onclick="viewTrip('${doc.id}')">View</button>
+              <button class="delete-btn" onclick="deleteTrip('${doc.id}')">Delete</button>
+            </div>
+          `;
+          tripsContainer.appendChild(card);
+        });
+      } catch (error) {
+        console.error("Error fetching trips:", error);
+        tripsContainer.innerHTML = "<p>Failed to load trips. Please try again later.</p>";
+      }
+    }
+
+    // Redirect to view trip details
+    window.viewTrip = (tripId) => {
+      window.location.href = `view_data.html?tripId=${encodeURIComponent(tripId)}`;
+    };
+
+    // Delete a trip
+    window.deleteTrip = async (tripId) => {
+      if (confirm("Are you sure you want to delete this trip?")) {
+        try {
+          await deleteDoc(doc(db, "trips", tripId));
+          alert("Trip deleted successfully.");
+          location.reload();
+        } catch (error) {
+          console.error("Error deleting trip:", error);
+          alert("Failed to delete the trip. Please try again.");
+        }
+      }
+    };
+
+    // Check authentication and fetch trips
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        fetchUserTrips(user.uid);
+      } else {
+        alert("Please log in to view your trips.");
+        window.location.href = "index.html";
+      }
+    });
+  </script>
+  <style>
+    /* Cards Container */
+.cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(120deg, #f6f9ff, #eaf1ff); /* Soft gradient */
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  margin-top: 2rem;
+}
+
+/* Cards Styling */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid for larger cards */
+  gap: 2rem; /* More space between cards */
+  width: 100%;
+  max-width: 1200px; /* Limit max width */
+}
+
+/* Loading Message */
+.loading-message {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #888;
+  text-align: center;
+  opacity: 0.8;
+}
+
+/* Card Styling */
+.card {
+  background: linear-gradient(135deg, #ffffff, #f8f9fc); /* Subtle gradient for depth */
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2); /* Stronger hover shadow */
+}
+
+/* Card Background Accent */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(to right, #2575fc, #6a93c0); /* Accent bar */
+  border-radius: 15px 15px 0 0;
+}
+
+/* Card Title */
+.card h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2575fc;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+}
+
+/* Card Date */
+.card p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+/* Card Actions */
+.card-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Button Styling */
+.card-actions button {
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-actions button.view-btn {
+  background: linear-gradient(135deg, #2575fc, #6a93c0); /* Gradient button */
+  color: white;
+}
+
+.card-actions button.view-btn:hover {
+  background: linear-gradient(135deg, #1b57a6, #4d7fa6);
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(37, 117, 252, 0.3);
+}
+
+.card-actions button.delete-btn {
+  background: linear-gradient(135deg, #e74c3c, #e67e68); /* Gradient button */
+  color: white;
+}
+
+.card-actions button.delete-btn:hover {
+  background: linear-gradient(135deg, #c0392b, #d65b4f);
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(231, 76, 60, 0.3);
+}
+
+  </style>
 </head>
 <body>
   <!-- Navbar -->
@@ -15,10 +219,9 @@
         <span>Plantogo</span>
         <img src="img/logo.png" alt="Plantogo Logo" style="height: 35px; width: auto;">
       </div>
-      <div class="nav-toggle" aria-label="Toggle navigation menu">&#9776;</div>
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
-        <li><a href="index.html" class="signup">Log out</a></li>
+        <li><a href="index.html" class="logout-btn">Log out</a></li>
       </ul>
     </nav>
   </header>
@@ -29,32 +232,17 @@
       <h1>Plan To Go</h1>
       <p>Plan Every Trip Perfectly – Easy, Convenient, and All in One Place!</p>
       <div class="search2-box" style="margin-top: 50px;">
-        <a href="create_plan.html"> <button class="search-button">Create you plan</button></a>
+        <a href="create_plan.html"> <button class="search-button">Create your plan</button></a>
       </div>
     </div>
   </section>
 
   <!-- Planning Section -->
   <section class="planning">
-    <h2>Schedule your planning</h2>
-    <p>Function to create and plan your trip</p>
+    <h2>Your Trips</h2>
+    <p>View or delete your trips below</p>
     <div class="cards">
-      <div class="card">
-        <img src="img/image.png" alt="Example Plan">
-        <h3>EXAMPLE PLAN</h3>
-        <button>CLICK TO VIEW</button>
-      </div>
-      <div class="card">
-        <img src="img/image.png" alt="Japanese Plan">
-        <h3>JAPANESE PLAN</h3>
-        <p>13/10/2024 - 20/10/2024</p>
-        <button>CLICK TO VIEW</button>
-      </div>
-      <div class="card">
-        <img src="img/image.png" alt="Create a New Plan">
-        <h3>CREATE A NEW PLAN</h3>
-        <a href="form.html" class="create-button">CREATE</a>
-      </div>
+      <p>Loading trips...</p>
     </div>
   </section>
 
@@ -66,11 +254,5 @@
       </a>
     </div>
   </footer>
-
-  <script src="script.js"></script>
-  <!-- Scroll Reveal JS -->
-  <script src="https://unpkg.com/scrollreveal"></script>
-  <!-- Typed.js -->
-  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 </body>
 </html>

@@ -4,292 +4,420 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create Your Trip</title>
-  <link rel="stylesheet" href="styles.css">
   <style>
     /* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f9f9f9;
-  color: #2c3e50;
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
-}
-
-/* Header Section */
-.hero-section {
-  background: linear-gradient(120deg, #a1c4fd, #1b11b3);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f7fc;
+      color: #2c3e50;
+      line-height: 1.6;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+     
+    /* Header Section */
+    header {
+      background: linear-gradient(120deg, #6a11cb, #2575fc);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      position: relative;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    header .return-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: white;
+      color: #2575fc;
+      padding: 10px 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    header .return-btn:hover {
+      background: #6a93c0;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      margin-top: 5px;
+    }
+     
+    /* Main Content */
+    main {
+      margin: 30px auto;
+      max-width: 1000px; /* เพิ่มความกว้างของ main */
+      width: 95%; /* ทำให้กล่องกว้างเกือบเต็มจอ */
+      padding: 0 20px;
+      flex: 1;
+    }
+    .section {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 30px 50px; /* เพิ่ม Padding ให้กล่องดูสมดุล */
+      margin-bottom: 30px; /* เพิ่มระยะห่างระหว่างกล่อง */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    h2 {
+      margin-bottom: 20px;
+      font-size: 2rem; /* เพิ่มขนาดหัวข้อ */
+      font-weight: bold;
+      color: #2575fc;
+      text-align: center;
+    }
+     
+    /* Input Fields */
+    .input-wrapper {
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 1rem;
+      color: #555;
+    }
+    input {
+      width: 100%;
+      padding: 14px; /* เพิ่ม Padding ของช่องกรอก */
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      background: #f8f9fc;
+      transition: all 0.3s ease;
+    }
+    input:focus {
+      border-color: #2575fc;
+      box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
+    }
+     
+    /* Buttons */
+    button {
+      display: block;
+      width: 100%;
+      padding: 18px; /* เพิ่ม Padding ของปุ่ม */
+      background: #2575fc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+    button:hover {
+      background: #6a93c0;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+     
+    /* Day Details */
+    .day-container {
+      margin-top: 20px;
+    }
+    .day-title {
+      margin: 15px 0;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #2575fc;
+    }
+ 
+    .location-wrapper {
+      margin: 20px 0;
+      position: relative;
+      padding: 15px;
+      border: 1px solid #ddd; /* เส้นแบ่งที่มองเห็นได้ */
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .location-wrapper:not(:last-child) {
+      margin-bottom: 15px; /* เพิ่มระยะห่างระหว่าง Location */
+    }
+    .location-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #2575fc;
+      margin-bottom: 10px;
+    }
+    .delete-location-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #e74c3c; /* Red color for the delete button */
   color: white;
-  text-align: center;
-  padding: 60px 20px;
-  border-radius: 0 0 15px 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Header Top Section */
-.header-top {
-  display: flex;
-  justify-content: flex-start;
-  padding: 10px 20px;
-}
-
-.back-button {
-  background-color: #ffffff;
-  color: #1b11b3;
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 8px 16px;
-  border: 2px solid #1b11b3;
-  border-radius: 8px;
-  text-decoration: none;
+  border: none;
+  border-radius: 50%; /* Make the button circular */
+  width: 35px; /* Set width and height to create a circular shape */
+  height: 35px;
+  font-size: 1.2rem; /* Larger font size for '×' */
   cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.back-button:hover {
-  background-color: #1b11b3;
-  color: #ffffff;
-  transform: scale(1.05);
-}
-
-.hero-section h1 {
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.hero-section p {
-  font-size: 1.2rem;
-  font-weight: 300;
-}
-
-/* Trip Section */
-.trip-section {
-  margin: 40px 20px;
-}
-
-.trip-container {
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-}
-
-.trip-container h2 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-}
-
-.trip-details {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.input-wrapper {
-  flex: 1 1 45%;
-  display: flex;
-  flex-direction: column;
-}
-
-.input-wrapper label {
-  margin-bottom: 5px;
-  font-weight: 500;
-  color: #2c3e50;
-}
-
-input[type="text"], input[type="date"] {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-input:focus {
-  border-color: #1b11b3;
-  outline: none;
-  box-shadow: 0 0 5px rgba(27, 17, 179, 0.3);
-}
-
-.add-image {
-  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.add-image button {
-  padding: 10px 15px;
-  background: #1b11b3;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.delete-location-btn:hover {
+  background: #c0392b; /* Darker red on hover */
+  transform: scale(1.1); /* Slightly enlarge on hover */
 }
 
-.add-image button:hover {
-  background: #6a93c0;
+.delete-location-btn:focus {
+  outline: none; /* Remove the outline when clicked */
+  box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.3); /* Add a red glow when focused */
 }
 
-/* Day Section */
-.day-section {
-  margin: 40px 20px;
+.delete-location-btn:active {
+  transform: scale(0.95); /* Slightly shrink when clicked */
 }
 
-.day-section h2 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-}
-
-.day-details {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.day-details .full-width {
-  flex: 1 1 100%;
-}
-
-.add-more {
-  padding: 10px 20px;
-  background: #1b11b3;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: all 0.3s ease;
-}
-
-.add-more:hover {
-  background: #6a93c0;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .trip-details, .day-details {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .input-wrapper {
-    flex: 1 1 100%;
-  }
-
-  .hero-section h1 {
-    font-size: 2.5rem;
-  }
-
-  .hero-section p {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-section h1 {
-    font-size: 2rem;
-  }
-
-  .hero-section p {
-    font-size: 0.9rem;
-  }
-
-  .add-more {
-    font-size: 1rem;
-  }
-}
+     
+    /* Footer Section */
+    footer {
+      text-align: center;
+      padding: 20px 30px;
+      background: #6a11cb;
+      color: white;
+      font-size: 1rem;
+      border-radius: 20px 20px 0 0;
+    }
+     
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      main {
+        max-width: 95%; /* ให้กล่องกว้างเต็มจอสำหรับหน้าจอเล็ก */
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 0.9rem;
+      }
+      button {
+        font-size: 1rem;
+        padding: 15px;
+      }
+    }
   </style>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+ 
+    const firebaseConfig = {
+      apiKey: "AIzaSyCgtHq12Z7Ow1MHOs3KOleiIgW0kOGgjCg",
+      authDomain: "plantogo-79e1f.firebaseapp.com",
+      projectId: "plantogo-79e1f",
+      storageBucket: "plantogo-79e1f.appspot.com",
+      messagingSenderId: "581749759098",
+      appId: "1:581749759098:web:9291dd56f6f7db0e7a2fc3",
+    };
+ 
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+ 
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        alert("Please log in to create a trip.");
+        window.location.href = "login.html";
+      }
+    });
+ 
+    document.addEventListener("DOMContentLoaded", () => {
+      const startDateInput = document.getElementById("start-date");
+      const endDateInput = document.getElementById("end-date");
+      const dayContainer = document.querySelector(".day-container");
+ 
+      function generateDayDetails() {
+        dayContainer.innerHTML = "";
+        const startDate = new Date(startDateInput.value);
+        const endDate = new Date(endDateInput.value);
+ 
+        if (isNaN(startDate) || isNaN(endDate) || startDate > endDate) {
+          alert("Please enter valid start and end dates.");
+          return;
+        }
+ 
+        const dayCount = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+ 
+        for (let i = 0; i < dayCount; i++) {
+          const dayDiv = document.createElement("div");
+          dayDiv.className = "section";
+          dayDiv.innerHTML = `
+            <div class="day-title">Day ${i + 1}</div>
+            <div id="day-${i}-locations" class="locations-container"></div>
+            <button type="button" class="add-location-btn" data-day="${i}">+ Add Location</button>
+          `;
+          dayContainer.appendChild(dayDiv);
+        }
+      }
+ 
+      function addLocation(dayIndex) {
+        const locationsContainer = document.getElementById(`day-${dayIndex}-locations`);
+        const locationCount = locationsContainer.querySelectorAll(".location-wrapper").length;
+ 
+        const locationDiv = document.createElement("div");
+        locationDiv.className = "location-wrapper";
+        locationDiv.innerHTML = `
+    <div class="location-title">Location ${locationCount + 1}</div>
+  <button type="button" class="delete-location-btn" data-day="0">×</button>
+  <label>Location:</label>
+  <input type="text" placeholder="Enter location">
+  <label>Time:</label>
+  <input type="text" placeholder="Enter time">
+  <label>Budget:</label>
+  <input type="text" placeholder="Enter budget">
+  <label>Detail:</label>
+  <input type="text" placeholder="Enter detail">
+  `;
+        locationsContainer.appendChild(locationDiv);
+        updateLocationTitles(dayIndex); // อัปเดตหมายเลข Location ใหม่
+      }
+ 
+      function deleteLocation(button) {
+        const locationWrapper = button.closest(".location-wrapper"); // หา parent element ที่เป็น location-wrapper
+        const dayIndex = button.getAttribute("data-day"); // ระบุ day index
+        if (locationWrapper) {
+          locationWrapper.remove(); // ลบ location
+        }
+        updateLocationTitles(dayIndex); // อัปเดตหมายเลข location ใหม่
+      }
+     
+     
+      function updateLocationTitles(dayIndex) {
+        const locationsContainer = document.getElementById(`day-${dayIndex}-locations`);
+        const locationWrappers = locationsContainer.querySelectorAll(".location-wrapper");
+        locationWrappers.forEach((locationWrapper, index) => {
+          const title = locationWrapper.querySelector(".location-title");
+          title.textContent = `Location ${index + 1}`; // อัปเดตชื่อ Location
+        });
+      }
+      startDateInput.addEventListener("change", generateDayDetails);
+      endDateInput.addEventListener("change", generateDayDetails);
+ 
+      document.body.addEventListener("click", (e) => {
+        if (e.target.classList.contains("add-location-btn")) {
+          const dayIndex = e.target.getAttribute("data-day");
+          addLocation(dayIndex);
+        } else if (e.target.classList.contains("delete-location-btn")) {
+          deleteLocation(e.target); // เรียกฟังก์ชันลบ
+        }
+      });
+     
+ 
+      document.querySelector("button").addEventListener("click", async () => {
+        const tripName = document.getElementById("trip-name").value.trim();
+        const startDate = startDateInput.value.trim();
+        const endDate = endDateInput.value.trim();
+ 
+        if (!tripName || !startDate || !endDate) {
+          alert("Please fill in all required fields.");
+          return;
+        }
+ 
+        const days = [];
+        dayContainer.querySelectorAll(".section").forEach((dayDiv, dayIndex) => {
+          const locations = [];
+          document
+            .getElementById(`day-${dayIndex}-locations`)
+            .querySelectorAll(".location-wrapper")
+            .forEach((locationDiv) => {
+              const inputs = locationDiv.querySelectorAll("input");
+              const locationData = {
+                location: inputs[0].value.trim(),
+                time: inputs[1].value.trim(),
+                budget: inputs[2].value.trim(),
+                detail: inputs[3].value.trim(),
+              };
+              locations.push(locationData);
+            });
+          days.push({ day: dayIndex + 1, locations });
+        });
+ 
+        try {
+          const userId = auth.currentUser?.uid;
+          if (!userId) throw new Error("User not authenticated.");
+ 
+          await addDoc(collection(db, "trips"), {
+            userId,
+            tripName,
+            startDate,
+            endDate,
+            days,
+            createdAt: new Date().toISOString(),
+          });
+ 
+          alert("Trip created successfully!");
+          window.location.href = "main_page.html";
+        } catch (error) {
+          console.error("Error adding document:", error);
+          alert(`Failed to create the trip: ${error.message}`);
+        }
+      });
+    });
+  </script>
 </head>
 <body>
-    <header class="hero-section">
-        <div class="header-top">
-          <a href="main_page.html" class="back-button">← Back</a>
-        </div>
-        <div class="hero-content">
-          <h1>CREATE YOUR TRIP</h1>
-          <p>Plan Every Trip Perfectly – Easy, Convenient, and All in One Place!</p>
-        </div>
-      </header>
-  
+  <header>
+    <a href="main_page.html" class="return-btn">← Return</a>
+    <h1>CREATE YOUR TRIP</h1>
+    <p>Plan Every Trip Perfectly – Easy, Convenient, and All in One Place!</p>
+  </header>
   <main>
-    <section class="trip-section">
-      <div class="trip-container">
-        <h2>Trip Details</h2>
-        <div class="trip-details">
-          <div class="input-wrapper">
-            <label for="trip-name">Trip Name</label>
-            <input id="trip-name" type="text" placeholder="Input your trip name">
-          </div>
-          <div class="input-wrapper">
-            <label for="trip-image">Add Image</label>
-            <div class="add-image">
-              <input id="trip-image" type="text" placeholder="Add the image trip here">
-              <button>+</button>
-            </div>
-          </div>
-          <div class="date-wrapper">
-            <div class="input-wrapper">
-              <label for="start-date">Start Date</label>
-              <input id="start-date" type="date">
-            </div>
-            <div class="input-wrapper">
-              <label for="end-date">Stop Date</label>
-              <input id="end-date" type="date">
-            </div>
-          </div>
-        </div>
+    <div class="section">
+      <h2>Trip Details</h2>
+      <div class="input-wrapper">
+        <label for="trip-name">Trip Name</label>
+        <input id="trip-name" type="text" placeholder="Enter your trip name">
       </div>
-    </section>
-
-    <section class="day-section">
-      <h2>DAY ONE</h2>
-      <div class="day-details">
-        <div class="input-wrapper">
-          <label for="location">The Location</label>
-          <input id="location" type="text" placeholder="Input the location">
-        </div>
-        <div class="input-wrapper">
-          <label for="image-add">Add Image</label>
-          <div class="add-image">
-            <input id="image-add" type="text" placeholder="Input to add the image trip here">
-            <button>+</button>
-          </div>
-        </div>
-        <div class="input-wrapper">
-          <label for="time">Time</label>
-          <input id="time" type="text" placeholder="Input the time">
-        </div>
-        <div class="input-wrapper">
-          <label for="budget">Budget</label>
-          <input id="budget" type="text" placeholder="Input the budget">
-        </div>
-        <div class="input-wrapper full-width">
-          <label for="detail">Detail</label>
-          <input id="detail" type="text" placeholder="Input the detail">
-        </div>
+      <div class="input-wrapper">
+        <label for="start-date">Start Date</label>
+        <input id="start-date" type="date">
       </div>
-      <button class="add-more">ADD MORE +</button>
-    </section>
+      <div class="input-wrapper">
+        <label for="end-date">Stop Date</label>
+        <input id="end-date" type="date">
+      </div>
+    </div>
+    <div class="day-container"></div>
+    <button>Save Trip</button>
   </main>
-
-  <script>
-    function goBack() {
-      window.history.back();
-    }
-  </script>
+  <footer>
+    ©PlanToGo. Let's enjoy to create your plan.
+  </footer>
 </body>
 </html>
+ 

@@ -1,60 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Login to Plantogo and plan your trips with ease.">
-  <title>Plan To Go - Login</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register & Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="firebaseauth.js"></script>
+    <style>
+      /* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  color: #2c3e50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: flex;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 1rem 2rem;
+  transition: all 0.3s ease;
+}
+
+
+
+/* Form Container */
+.container {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  max-width: 100%;
+  padding: 2rem;
+  text-align: center;
+}
+
+.form-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1b11b3;
+  margin-bottom: 1rem;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.input-group i {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: #1b11b3;
+  outline: none;
+  box-shadow: 0 0 4px rgba(27, 17, 179, 0.1);
+}
+
+.input-group label {
+  position: absolute;
+  top: 50%;
+  left: 2.5rem;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  color: #aaa;
+  transition: top 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+  pointer-events: none;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  top: -10px;
+  font-size: 0.75rem;
+  color: #1b11b3;
+}
+
+.btn {
+  display: inline-block;
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #1b11b3;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #6a93c0;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(27, 17, 179, 0.2);
+}
+
+/* Icons and Links */
+.icons i {
+  font-size: 1.5rem;
+  margin: 0 0.5rem;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.icons i:hover {
+  color: #1b11b3;
+  transform: scale(1.1);
+}
+
+.links p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.links button {
+  background: none;
+  border: none;
+  color: #1b11b3;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.links button:hover {
+  color: #6a93c0;
+}
+
+.recover a {
+  color: #1b11b3;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.recover a:hover {
+  color: #6a93c0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  .form-title {
+    font-size: 1.8rem;
+  }
+
+  .input-group input {
+    padding: 0.7rem 0.7rem 0.7rem 2.2rem;
+  }
+
+  .btn {
+    padding: 0.7rem;
+  }
+}
+
+    </style>
 </head>
-  <!-- Header Section -->
-  <header >
+<body style="display: flex;
+justify-content: center;
+align-items: center;">
+  <header>
     <nav>
       <div class="logo">
         <span>Plantogo</span>
         <img src="img/logo.png" alt="Plantogo Logo" style="height: 35px; width: auto;">
       </div>
+      <div class="nav-toggle" aria-label="Toggle navigation menu">&#9776;</div>
       <ul class="nav-links">
-        <li><a href="index.html" class="login">< Return</a></li>
-        <li><a href="sign_up.html" class="signup">Sign Up</a></li>
+        <li><a href="index.html" class="signup"> < Return</a></li>
       </ul>
     </nav>
   </header>
-
-  <!-- Login Section -->
-  <div  class="login-container" id="loginx">
-    <h1>Login to Plantogo</h1>
-    <form action="dashboard.html" method="POST">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+    <div class="container" id="signup" style="display:none;">
+      <h1 class="form-title">Register</h1>
+      <form method="post" action="">
+        <div id="signUpMessage" class="messageDiv" style="display:none;"></div>
+        <div class="input-group">
+           <i class="fas fa-user"></i>
+           <input type="text"  id="fName" placeholder="First Name" required>
+           <label for="fname">First Name</label>
+        </div>
+        <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text"  id="lName" placeholder="Last Name" required>
+            <label for="lName">Last Name</label>
+        </div>
+        <div class="input-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email"  id="rEmail" placeholder="Email" required>
+            <label for="rEmail">Email</label>
+        </div>
+        <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="rPassword"  placeholder="Password" required>
+            <label for="rPassword">Password</label>
+        </div>
+       <button class="btn" id="submitSignUp" >Sign Up</button>
+      </form>
+      <p class="or">
+        ----------or--------
+      </p>
+      <div class="icons">
+        <i class="fab fa-google"></i>
+        <i class="fab fa-facebook"></i>
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      <div class="links">
+        <p>Already Have Account ?</p>
+        <button id="signInButton">Sign In</button>
       </div>
-      <button type="submit">Log In</button>
-    </form>
-    <div class="register">
-      <p>Don't have an account? <a href="sign_up.html">Sign up</a></p>
     </div>
-  </div>
 
-  <!-- Footer Section -->
-  <footer class="footer">
-    <div class="footer-iconTop">
-      <a href="#login" title="Scroll to Home">
-        <i class="fas fa-arrow-up"></i> <!-- Home icon -->
-      </a>
-    </div>
-  </footer>
+  <div class="container" id="signIn">
+        <h1 class="form-title">Sign In</h1>
+        <form method="post" action="">
+          <div id="signInMessage" class="messageDiv" style="display:none;"></div>
 
-  <script src="script.js"></script>
-  <!-- SCROLL REVEAL JS -->
-  <script src="https://unpkg.com/scrollreveal"></script>
-  <!-- TYPEJS -->
-  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+          <div class="input-group">
+              <i class="fas fa-envelope"></i>
+              <input type="email"  id="email" placeholder="Email" required>
+              <label for="email">Email</label>
+          </div>
+          <div class="input-group">
+              <i class="fas fa-lock"></i>
+            <input type="password" id="password"  placeholder="Password" required>
+              <label for="password">Password</label>
+          </div>
+          <p class="recover">
+            <a href="#">Recover Password</a>
+          </p>
+         <button  class="btn"  id="submitSignIn">Sign In</button>
+        </form>
+        <p class="or">
+          ----------or--------
+        </p>
+        <div class="icons">
+          <i class="fab fa-google"></i>
+          <i class="fab fa-facebook"></i>
+        </div>
+        <div class="links">
+          <p>Don't have account yet?</p>
+          <button id="signUpButton">Sign Up</button>
+        </div>
+      </div>
+      <script src="script.js"></script>
 </body>
 </html>

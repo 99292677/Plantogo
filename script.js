@@ -72,25 +72,18 @@ window.addEventListener('scroll', () => {
   });
 });
 
-const addRowBtn = document.getElementById('add-row-btn');
-const deleteRowBtn = document.getElementById('delete-last-row-btn');
-const tableBody = document.querySelector('#data-table tbody');
 
-addRowBtn.addEventListener('click', () => {
-  const newRow = document.createElement('tr');
-  for (let i = 0; i < 5; i++) {
-    const newCell = document.createElement('td');
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.placeholder = `Enter Data ${i + 1}`;
-    newCell.appendChild(input);
-    newRow.appendChild(newCell);
-  }
-  tableBody.appendChild(newRow);
-});
+const signUpButton=document.getElementById('signUpButton');
+const signInButton=document.getElementById('signInButton');
+const signInForm=document.getElementById('signIn');
+const signUpForm=document.getElementById('signup');
 
-deleteRowBtn.addEventListener('click', () => {
-  if (tableBody.rows.length > 0) {
-    tableBody.deleteRow(-1);
-  }
-});
+signUpButton.addEventListener('click',function(){
+    signInForm.style.display="none";
+    signUpForm.style.display="block";
+})
+signInButton.addEventListener('click', function(){
+    signInForm.style.display="block";
+    signUpForm.style.display="none";
+})
+

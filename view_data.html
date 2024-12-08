@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trip Details</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f1f3f6;
+      color: #2c3e50;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 20px 0;
+    }
+
+    /* Header Section */
+    header {
+      background: linear-gradient(120deg, #6a11cb, #2575fc);
+      color: white;
+      text-align: center;
+      padding: 20px 40px;
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 0 0 20px 20px;
+      margin-bottom: 20px;
+    }
+
+    header .return-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: white;
+      color: #2575fc;
+      padding: 10px 15px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    header .return-btn:hover {
+      background: #6a93c0;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Trip Details Section */
+    .trip-details {
+      background: white;
+      border-radius: 15px;
+      margin: 30px auto;
+      max-width: 800px;
+      width: 90%;
+      padding: 30px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.5s ease;
+    }
+
+    .trip-details h2 {
+      font-size: 2.6rem;
+      font-weight: bold;
+      color: #2575fc;
+      text-align: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #2575fc;
+      padding-bottom: 10px;
+    }
+
+    .trip-details p {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    .trip-details h3 {
+      font-size: 1.8rem;
+      color: #2c3e50;
+      margin: 20px 0;
+      padding-bottom: 5px;
+      border-bottom: 2px solid #2575fc;
+    }
+
+    /* Day Box Styling */
+    .day-box {
+      background: #f4f7fc;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .day-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .day-box h4 {
+      font-size: 1.4rem;
+      color: #2575fc;
+      margin-bottom: 10px;
+    }
+
+    .day-box p {
+      font-size: 1.1rem;
+      color: #555;
+      margin: 5px 0;
+    }
+
+    /* Location Box Styling */
+    .location-box {
+      background: #f4f7fc;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .location-box h5 {
+      font-size: 1.2rem;
+      color: #2575fc;
+      margin-bottom: 8px;
+    }
+
+    .location-box p {
+      font-size: 1rem;
+      color: #555;
+      margin: 4px 0;
+    }
+
+    /* Buttons */
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+
+    .actions button {
+      background-color: #2575fc;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .actions button:hover {
+      background-color: #6a93c0;
+      transform: translateY(-2px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      header .return-btn {
+        top: 15px;
+        left: 10px;
+        font-size: 0.9rem;
+      }
+
+      .trip-details {
+        padding: 20px 15px;
+      }
+
+      .trip-details h2 {
+        font-size: 2rem;
+      }
+
+      .trip-details h3 {
+        font-size: 1.5rem;
+      }
+
+      .actions button {
+        font-size: 1rem;
+        padding: 10px 15px;
+      }
+    }
+
+    /* Fade-in Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+  </style>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCgtHq12Z7Ow1MHOs3KOleiIgW0kOGgjCg",
+      authDomain: "plantogo-79e1f.firebaseapp.com",
+      projectId: "plantogo-79e1f",
+      storageBucket: "plantogo-79e1f.firebasestorage.app",
+      messagingSenderId: "581749759098",
+      appId: "1:581749759098:web:9291dd56f6f7db0e7a2fc3",
+      measurementId: "G-10X7R19GY1"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    async function fetchTripDetails(tripId) {
+      const tripContainer = document.querySelector(".trip-details");
+      tripContainer.innerHTML = ""; // Clear existing content
+
+      try {
+        const tripRef = doc(db, "trips", tripId);
+        const tripDoc = await getDoc(tripRef);
+
+        if (!tripDoc.exists()) {
+          tripContainer.innerHTML = "<p>Trip not found or you do not have permission to view it.</p>";
+          return;
+        }
+
+        const trip = tripDoc.data();
+        tripContainer.innerHTML = `
+          <h2>${trip.tripName}</h2>
+          <p><strong>Start Date:</strong> ${trip.startDate}</p>
+          <p><strong>End Date:</strong> ${trip.endDate}</p>
+          <h3>Days:</h3>
+          <div>
+            ${trip.days.map(
+              (day, index) => `
+                <div class="day-box">
+                  <h4>Day ${index + 1}</h4>
+                  ${day.locations.map(
+                    (location, locIndex) => `
+                      <div class="location-box">
+                        <h5>Location ${locIndex + 1}</h5>
+                        <p><strong>Location:</strong> ${location.location}</p>
+                        <p><strong>Time:</strong> ${location.time}</p>
+                        <p><strong>Budget:</strong> ${location.budget}</p>
+                        <p><strong>Detail:</strong> ${location.detail}</p>
+                      </div>
+                    `
+                  ).join("")}
+                </div>
+              `
+            ).join("")}
+          </div>
+          <div class="actions">
+            <button onclick="editTrip('${tripId}')">Edit</button>
+          </div>
+        `;
+      } catch (error) {
+        console.error("Error fetching trip details:", error);
+        tripContainer.innerHTML = "<p>Failed to load trip details. Please try again later.</p>";
+      }
+    }
+
+    window.editTrip = (tripId) => {
+      window.location.href = `edit_data.html?tripId=${encodeURIComponent(tripId)}`;
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const tripId = params.get("tripId");
+
+      if (!tripId) {
+        document.querySelector(".trip-details").innerHTML = "<p>Invalid trip ID.</p>";
+        return;
+      }
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          fetchTripDetails(tripId);
+        } else {
+          alert("Please log in to view trip details.");
+          window.location.href = "index.html";
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <a href="main_page.html" class="return-btn">← Back to Trips</a>
+    <h1>Trip Details</h1>
+  </header>
+
+  <section class="trip-details">
+    <p>Loading trip details...</p>
+  </section>
+</body>
+</html>

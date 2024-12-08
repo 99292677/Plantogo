@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Trip</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #f9f9f9, #eaeff5);
+      color: #2c3e50;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
+
+    /* Header Section */
+    header {
+      background: linear-gradient(120deg, #6a11cb, #2575fc);
+      color: white;
+      text-align: center;
+      padding: 20px 40px;
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      border-radius: 0 0 20px 20px;
+    }
+
+    header .return-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: white;
+      color: #2575fc;
+      padding: 10px 15px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    header .return-btn:hover {
+      background: #6a93c0;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Edit Form Section */
+    .edit-form {
+      background: white;
+      border-radius: 15px;
+      margin: 30px auto;
+      max-width: 800px;
+      width: 90%;
+      padding: 30px 40px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.5s ease;
+    }
+
+    .edit-form h2 {
+      font-size: 2.4rem;
+      font-weight: bold;
+      color: #2575fc;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .edit-form label {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: block;
+      color: #2c3e50;
+    }
+
+    .edit-form input,
+    .edit-form textarea {
+      width: 100%;
+      padding: 10px 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      color: #2c3e50;
+      background: #f4f7fc;
+      transition: border-color 0.3s ease;
+    }
+
+    .edit-form input:focus,
+    .edit-form textarea:focus {
+      border-color: #2575fc;
+      outline: none;
+    }
+
+    .edit-form .readonly {
+      background: #f9f9f9;
+      border: none;
+      color: #555;
+      cursor: not-allowed;
+    }
+
+    .edit-form button {
+      width: 100%;
+      background-color: #2575fc;
+      color: white;
+      border: none;
+      padding: 15px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .edit-form button:hover {
+      background-color: #6a93c0;
+      transform: translateY(-2px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      header .return-btn {
+        top: 15px;
+        left: 10px;
+        font-size: 0.9rem;
+      }
+
+      .edit-form {
+        padding: 20px 15px;
+      }
+
+      .edit-form h2 {
+        font-size: 2rem;
+      }
+    }
+
+    /* Fade-in Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+    import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCgtHq12Z7Ow1MHOs3KOleiIgW0kOGgjCg",
+      authDomain: "plantogo-79e1f.firebaseapp.com",
+      projectId: "plantogo-79e1f",
+      storageBucket: "plantogo-79e1f.firebaseapp.com",
+      messagingSenderId: "581749759098",
+      appId: "1:581749759098:web:9291dd56f6f7db0e7a2fc3",
+      measurementId: "G-10X7R19GY1"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    async function fetchTripDetails(tripId) {
+      const form = document.querySelector(".edit-form");
+      form.innerHTML = ""; // Clear existing content
+
+      try {
+        const tripRef = doc(db, "trips", tripId);
+        const tripDoc = await getDoc(tripRef);
+
+        if (!tripDoc.exists()) {
+          form.innerHTML = "<p>Trip not found or you do not have permission to edit it.</p>";
+          return;
+        }
+
+        const trip = tripDoc.data();
+        form.innerHTML = `
+          <h2>Edit Trip</h2>
+          <label>Trip Name</label>
+          <input type="text" id="tripName" value="${trip.tripName}" required>
+
+          <label>Start Date</label>
+          <input type="text" class="readonly" value="${trip.startDate}" readonly>
+
+          <label>End Date</label>
+          <input type="text" class="readonly" value="${trip.endDate}" readonly>
+
+          <h3>Edit Days:</h3>
+          ${trip.days.map(
+            (day, index) => `
+              <label>Day ${index + 1} - Location</label>
+              <input type="text" id="location-${index}" value="${day.locations[0]?.location || ''}">
+
+              <label>Day ${index + 1} - Time</label>
+              <input type="text" id="time-${index}" value="${day.locations[0]?.time || ''}">
+
+              <label>Day ${index + 1} - Budget</label>
+              <input type="text" id="budget-${index}" value="${day.locations[0]?.budget || ''}">
+
+              <label>Day ${index + 1} - Detail</label>
+              <input type="text" id="detail-${index}" value="${day.locations[0]?.detail || ''}">
+            `
+          ).join("")}
+
+          <button type="button" onclick="saveChanges('${tripId}')">Save Changes</button>
+        `;
+      } catch (error) {
+        console.error("Error fetching trip details:", error);
+        form.innerHTML = "<p>Failed to load trip details. Please try again later.</p>";
+      }
+    }
+
+    window.saveChanges = async (tripId) => {
+      const tripName = document.getElementById("tripName").value.trim();
+
+      const days = [];
+      const form = document.querySelector(".edit-form");
+
+      form.querySelectorAll("input[id^='location-']").forEach((input, index) => {
+        const location = input.value.trim();
+        const time = form.querySelector(`#time-${index}`).value.trim();
+        const budget = form.querySelector(`#budget-${index}`).value.trim();
+        const detail = form.querySelector(`#detail-${index}`).value.trim();
+
+        days.push({ locations: [{ location, time, budget, detail }] });
+      });
+
+      try {
+        await updateDoc(doc(db, "trips", tripId), { tripName, days });
+        alert("Trip updated successfully!");
+        window.location.href = `view_data.html?tripId=${tripId}`;
+      } catch (error) {
+        console.error("Error updating trip:", error);
+        alert("Failed to update the trip. Please try again.");
+      }
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const tripId = params.get("tripId");
+
+      if (!tripId) {
+        document.querySelector(".edit-form").innerHTML = "<p>Invalid trip ID.</p>";
+        return;
+      }
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          fetchTripDetails(tripId);
+        } else {
+          alert("Please log in to edit trip details.");
+          window.location.href = "index.html";
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <a href="view_data.html?tripId=${new URLSearchParams(window.location.search).get('tripId')}" class="return-btn">← Back to Trip Details</a>
+    <h1>Edit Trip</h1>
+  </header>
+
+  <section class="edit-form">
+    <p>Loading trip details...</p>
+  </section>
+</body>
+</html>

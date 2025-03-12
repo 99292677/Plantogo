@@ -4,13 +4,13 @@
  import{getFirestore, setDoc, doc} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js"
  
  const firebaseConfig = {
-    apiKey: "AIzaSyCgtHq12Z7Ow1MHOs3KOleiIgW0kOGgjCg",
-    authDomain: "plantogo-79e1f.firebaseapp.com",
-    projectId: "plantogo-79e1f",
-    storageBucket: "plantogo-79e1f.firebasestorage.app",
-    messagingSenderId: "581749759098",
-    appId: "1:581749759098:web:9291dd56f6f7db0e7a2fc3",
-    measurementId: "G-10X7R19GY1"
+    apiKey: "xxxxxxxxxxxxxxxx",
+    authDomain: "xxxxxxxxxxxxxxxx",
+    projectId: "xxxxxxxxxxxxxxxx",
+    storageBucket: "xxxxxxxxxxxxxxxx",
+    messagingSenderId: "xxxxxxxxxxxxxxxx",
+    appId: "xxxxxxxxxxxxxxxx",
+    measurementId: "xxxxxxxxxxxxxxxx"
  };
 
  // Initialize Firebase
